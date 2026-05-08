@@ -1,179 +1,83 @@
-# Regime-Aware-Trading-System-with-Data-Validation
-A modular, production-inspired quantitative trading framework that combines market regime detection, data validation, and adaptive strategy switching for robust algorithmic trading research.
+# Regime-Aware Quantitative Trading System with Data Validation
 
-The system is designed to simulate how institutional quant pipelines process financial market data before making trading decisions.
+A modular quantitative trading framework engineered for adaptive market participation through probabilistic regime detection, institutional-grade data validation, and dynamic strategy allocation.
 
-📌 Project Overview
+The system integrates financial time-series preprocessing, volatility-aware regime classification, and signal generation pipelines to emulate production-style quantitative trading infrastructure.
 
-Traditional retail trading systems apply a single strategy across all market conditions, often leading to poor robustness during volatile or regime-shifting environments.
+---
 
-This project addresses that issue by:
+## Core Capabilities
 
-Validating raw OHLCV market data
-Engineering statistical and technical features
-Detecting market regimes dynamically
-Switching strategies based on detected regimes
-Generating trading signals adaptively
+- Multi-source OHLCV data ingestion
+- Institutional-style data validation framework
+- Statistical feature engineering
+- Volatility and trend regime detection
+- Adaptive strategy switching
+- Signal generation and position management
+- Extensible architecture for live deployment and backtesting
 
-The architecture is intentionally modular to resemble real-world quantitative trading infrastructure.
+---
 
-🚀 Core Features
-✅ Data Ingestion Layer
-Binance API integration
-Historical CSV support
-Standardized OHLCV formatting
-Extensible source architecture
-✅ Data Validation Engine
+## Validation Framework
 
-Institution-grade preprocessing pipeline:
+Robust preprocessing pipeline designed to mitigate execution risk arising from anomalous market data.
 
-Missing value detection
-Timestamp consistency checks
-OHLC integrity validation
-Outlier/spike detection using Z-score analysis
-Data quality scoring
-✅ Feature Engineering
+### Implemented Checks
+- Missing value imputation
+- Timestamp integrity verification
+- OHLC consistency validation
+- Statistical outlier detection
+- Data quality scoring
 
-Generates trading and statistical indicators:
+---
 
-Returns
-Moving Averages
-Rolling Volatility
-RSI (Relative Strength Index)
-✅ Regime Detection Layer
+## Regime Detection
 
-Dynamic market state classification using:
+Market state classification using:
+- Moving Average trend structure
+- Rolling volatility estimation
+- Probabilistic Hidden Markov Models (`hmmlearn`) *(in progress)*
 
-Trend detection via moving averages
-Volatility regime analysis
-Hidden Markov Models using hmmlearn (planned integration)
+### Supported Regimes
+- `TREND_UP`
+- `TREND_DOWN`
+- `RANGE`
+- `HIGH_VOL`
 
-Current regimes include:
+---
 
-TREND_UP
-TREND_DOWN
-RANGE
-HIGH_VOL
-✅ Strategy Engine
+## Strategy Architecture
 
-Adaptive strategy switching based on market regime:
+| Market Regime | Active Strategy |
+|---|---|
+| TREND_UP | Momentum |
+| TREND_DOWN | Short Momentum |
+| RANGE | Mean Reversion |
+| HIGH_VOL | Risk-Off / Reduced Exposure |
 
-Regime	Strategy
-TREND_UP	Momentum
-TREND_DOWN	Short Momentum
-RANGE	Mean Reversion (RSI)
-HIGH_VOL	Risk Reduction / No Trade
-🏗️ System Architecture
-Data Source
-    ↓
-Data Ingestion
-    ↓
-Data Validation
-    ↓
-Feature Engineering
-    ↓
-Regime Detection
-    ↓
-Strategy Engine
-    ↓
-Signal Generation
-    ↓
-(Upcoming)
-Backtesting & Performance Analytics
-📂 Project Structure
+---
+
+## Technology Stack
+
+- Python
+- Pandas
+- NumPy
+- Requests
+- hmmlearn
+- Matplotlib *(planned)*
+- Backtrader / VectorBT *(planned)*
+
+---
+
+## Project Structure
+
+```text
 QUANT/
 │
 ├── data_ingestion/
-│   ├── __init__.py
-│   ├── base_data_source.py
-│   ├── binance_source.py
-│   ├── csv_source.py
-│   └── data_factory.py
-│
 ├── validation/
-│   └── data_validator.py
-│
 ├── features/
-│   └── feature_engineering.py
-│
 ├── regime/
-│   └── regime_detector.py
-│
 ├── strategies/
-│   └── strategy_engine.py
-│
 ├── main.py
-│
 └── README.md
-🧠 Technologies Used
-Python
-Pandas
-NumPy
-Requests
-hmmlearn (planned)
-Matplotlib (planned)
-Backtrader / VectorBT (planned)
-📊 Planned Enhancements
-🔹 Hidden Markov Model Integration
-
-Using hmmlearn for probabilistic regime classification:
-
-Bull/Bear states
-Volatility clustering
-Latent market state estimation
-🔹 Backtesting Engine
-Equity curve generation
-Sharpe Ratio
-Drawdown analysis
-Trade statistics
-🔹 Live Trading Simulation
-Streaming market data
-Real-time validation
-Dynamic signal execution
-🔹 Risk Management
-Stop-loss / take-profit
-Position sizing
-Volatility-adjusted exposure
-⚙️ Installation
-Clone Repository
-git clone <your-repo-url>
-cd QUANT
-Create Virtual Environment
-python -m venv venv
-Activate Environment
-Windows
-venv\Scripts\activate
-Linux / Mac
-source venv/bin/activate
-Install Dependencies
-pip install pandas numpy requests hmmlearn
-▶️ Running the Project
-
-Run from the project root directory:
-
-python main.py
-📈 Learning Goals of This Project
-
-This project focuses on understanding:
-
-Financial time-series preprocessing
-Quantitative feature engineering
-Regime-aware trading systems
-Statistical market modeling
-Modular trading architecture
-Production-style Python project structure
-⚠️ Disclaimer
-
-This project is intended for:
-
-Educational purposes
-Quantitative research
-Portfolio demonstration
-
-It is not financial advice and should not be used directly for live capital deployment without extensive testing.
-
-👨‍💻 Author
-
-Akash Mall
-Electrical Engineering Student
-Aspiring Quant Developer / Data-Driven Systems Engineer
