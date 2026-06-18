@@ -22,9 +22,9 @@ class RegimeDetector:
 
         return self.df
 
-    # -------------------------------------------------------------
+   
     # 1) TREND SIGNAL (based on moving averages computed earlier)
-    # -------------------------------------------------------------
+   
     def add_trend_signal(self):
         """
         Uses short MA vs long MA:
@@ -42,9 +42,8 @@ class RegimeDetector:
             )
         )
 
-    # -------------------------------------------------------------
     # 2) VOLATILITY SIGNAL (based on rolling std of returns)
-    # -------------------------------------------------------------
+
     def add_volatility_signal(self):
         """
         Classify volatility into high/low using a threshold.
@@ -59,9 +58,8 @@ class RegimeDetector:
             self.df["volatility"] > vol_threshold, 1, 0
         )
 
-    # -------------------------------------------------------------
     # 3) FINAL REGIME ASSIGNMENT
-    # -------------------------------------------------------------
+
     def assign_regime(self):
         """
         Combine trend + volatility into human-readable regimes:
