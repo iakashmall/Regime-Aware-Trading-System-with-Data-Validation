@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import pandas as pd
-
+# data ingestion class
 class BaseDataSource(ABC):
 
     @abstractmethod
